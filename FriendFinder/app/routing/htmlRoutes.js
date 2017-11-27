@@ -21,7 +21,7 @@ module.exports = function(app){
 
 	//Route that sends the user to the survey page 
 	app.get("/survey", function(req, res){
-		res.sendFile(path.join(__dirname, "survey.html"));
+		res.sendFile(path.join(__dirname, "../public/survey.html"));
 	});
 };
 

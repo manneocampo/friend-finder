@@ -24,6 +24,15 @@ module.exports = function(app){
 	//...the JSON is pushed to the appropriate JavaScript array 
 	//Then the server saves the data to the friendsData array 
 	//----------------------------------
-
+	app.post("/api/friends", function(req, res){
+		if(friendsData.length < 5){
+			friendsData.push(req.body);
+			res.json(true);
+		}
+		else{
+			friendsData.push(req.body);
+			res.json(false);
+		}
+	});
 
 };
