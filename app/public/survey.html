@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-lg-12">
 
-        <!-- Reservation Page -->
+        <!-- Survey Page -->
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title"><strong>About You</strong></h4>
@@ -68,7 +68,7 @@
         
             <h3>Question 2</h3>
               <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q2">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -79,7 +79,7 @@
 
             <h3>Question 3</h3>
               <h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q3">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -90,7 +90,7 @@
             
             <h3>Question 4</h3>
               <h4>You rarely do something just out of sheer curiosity.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q4">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -101,7 +101,7 @@
             
             <h3>Question 5</h3>
               <h4>People can rarely upset you.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q5">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -112,7 +112,7 @@
             
             <h3>Question 6</h3>
               <h4>It is often difficult for you to relate to other people’s feelings.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q6">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -123,7 +123,7 @@
 
             <h3>Question 7</h3>
               <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q7">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -134,7 +134,7 @@
 
             <h3>Question 8</h3>
               <h4>You rarely get carried away by fantasies and ideas.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q8">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -145,7 +145,7 @@
 
             <h3>Question 9</h3>
               <h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q9">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -156,7 +156,7 @@
 
             <h3>Question 10</h3>
               <h4>You feel more energetic after spending time with a group of people.</h4>
-                <select data-placeholder="" class="chosen-select" id="q1">
+                <select data-placeholder="" class="chosen-select" id="q10">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
                 <option value="2">2</option>
@@ -186,11 +186,102 @@
   </div>
 <!--Bootstrap Modal-->
 <div id="results-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
   
+    <!--Content inside Modal-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title"><strong>Best Match</strong></h3>
+      </div>
+      <div class="modal-body">
+        <h3 id="match-name"></h3>
+        <img id="match-img" src="" alt="Best Match Friend Photo">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismis="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
   <script type= "text/javascript">
+  //chosen library content
+  var config = {
+    ".chosen-select:"{},
+    ".chosen-select-deselect:" {
+      allow_single_deselect:true
+    }, 
+    ".chosen-select-no-single:"{
+      disable_search_threshold: 10
+    }, 
+    ".chosen-select-no-results:"{
+      no_results_text:"Sorry, no results found."
+    }, 
+    ".chosen-select-width:" {
+      width: "95%"
+    }
+  };  
 
+  for(var selector in config){
+    $(selector).chosen(config[selector]);
+  }
+
+  //Gather input from form with on click event handler
+  $(#submit).on("click", function(event){
+    event.preventDefault();
+
+    //validation function for suvery form questions and for required input fields
+    function validateForm(){
+      var isValid = true;
+      $(".form-control").each(function(){
+        if($(this).val()===""){
+          isValid = false;
+        }
+      });
+      $(".chosen-select").each(function(){
+        if($(this).val()===""){
+          isValid = false;
+        }
+      });
+      return isValid;
+    }    
+    //If name and photo fields are filled in, validate and create object for user's data input
+    if(validateForm()) {
+      var userData = {
+        name: $("#name").val(), 
+        photo: $("#photo").val(), 
+        scores: [
+        $("#q1").val(),
+        $("#q2").val(),
+        $("#q3").val(),
+        $("#q4").val(),
+        $("#q5").val(),
+        $("#q6").val(),
+        $("#q7").val(),
+        $("#q8").val(),
+        $("#q9").val(),
+        $("#q10").val()
+        ]
+      };
+
+      //AJAX post of the data to the friends API
+      $.post("/api/friends", userData, function(data){
+
+        //Take results from the AJAX post and display the best match's name and photo in modal
+
+        //taking AJAX results from post
+        $("#match-name").text(data.name);
+        $("#match-img").attr("src", data.photo);
+
+        //show modal with the best match result
+        $("#results-modal").modal("toggle");
+      });
+    }else {
+      alert("Please fill all required fields before submitting.");
+    }
+  });
   </script>
 </body>
 </html>
