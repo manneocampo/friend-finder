@@ -7,6 +7,10 @@
  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!--Fontawesome cdn-->
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -96,7 +100,7 @@
                 </select>
             
             <h3>Question 5</h3>
-              <h4>YPeople can rarely upset you.</h4>
+              <h4>People can rarely upset you.</h4>
                 <select data-placeholder="" class="chosen-select" id="q1">
                 <option value="">Select an Option</option>
                 <option value="1">1 (Strongly Disagree)</option>
@@ -162,7 +166,8 @@
                 </select>
 
               <hr>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+
+              <button type="submit" class="btn btn-primary btn-lg btn-block"  id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
             </form>
 
           </div>
@@ -170,8 +175,8 @@
 
       </div>
     </div>
-
-
+    
+  
     <footer class="footer">
       <div class="container">
         <p><a href="/api/friends" target="_blank">API Friends List</a> |  <a href="https://github.com/manneocampo/friend-finder" target="_blank">GitHub Repo</a></p>
@@ -179,6 +184,11 @@
     </footer>
 
   </div>
+<!--Bootstrap Modal-->
+<div id="results-modal" class="modal fade" role="dialog">
+  
+</div>
+
   <script type= "text/javascript">
 
   </script>
