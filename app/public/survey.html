@@ -9,7 +9,7 @@
   <script src="https://code.jquery.com/jquery.js"></script>
 
   <!--Fontawesome cdn-->
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+ <!--  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
 
 
 
@@ -162,7 +162,7 @@
 
               <hr>
 
-              <button type="submit" class="btn btn-primary btn-lg btn-block"  id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
+              <button type="submit" class="btn btn-primary btn-lg btn-block"  id="submit"><!-- <i class="fa fa-check-circle" aria-hidden="true"></i> -->Submit</button>
             </form>
 
           </div>
@@ -207,21 +207,21 @@
   <!--chosen cdns-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.2/chosen.jquery.min.js"></script>
-  
+
   <script type= "text/javascript">
   //chosen library content
   var config = {
-    ".chosen-select:"{},
-    ".chosen-select-deselect:" {
+    ".chosen-select":{},
+    ".chosen-select-deselect": {
       allow_single_deselect:true
     }, 
-    ".chosen-select-no-single:"{
+    ".chosen-select-no-single":{
       disable_search_threshold: 10
     }, 
-    ".chosen-select-no-results:"{
+    ".chosen-select-no-results":{
       no_results_text:"Sorry, no results found."
     }, 
-    ".chosen-select-width:" {
+    ".chosen-select-width": {
       width: "95%"
     }
   };  
